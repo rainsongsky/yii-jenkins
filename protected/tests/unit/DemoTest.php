@@ -16,7 +16,7 @@ class DemoTest extends CTestCase
     }
     
     public function testA(){
-	$this->assertTrue(true, false);
+	$this->assertTrue(true, true);
     }
 
 }
