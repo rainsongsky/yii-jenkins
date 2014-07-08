@@ -1,7 +1,7 @@
 <project name="Jenkins Example" default="build" basedir=".">
 
     <!--<target name="build" depends="test,prepare,reports,docs">-->
-    <target name="build" depends="prepare,clean">
+    <target name="build" depends="test,prepare,clean">
         <!--<zip destfile="helloworld.zip" basedir="src"/>-->
         <!--<tar destfile="helloworld.tar" basedir="src"/>-->
     </target>
@@ -13,7 +13,7 @@
     </target>
     <target name="reports">
         <coverage-setup database="reports/coverage.db">
-            <fileset dir="src">
+            <fileset dir="protected/tests/unit">
                 <include name="*.php"/>
                 <exclude name="*Test.php"/>
             </fileset>
@@ -21,7 +21,7 @@
         <phpunit codecoverage="true">
             <formatter type="xml" todir="reports"/>
             <batchtest>
-                <fileset dir="src">
+                <fileset dir="protected/tests/unit">
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
@@ -35,7 +35,7 @@
     <target name="test">
         <phpunit haltonerror="true" haltonfailure="true">
             <batchtest>
-                <fileset dir="src">
+                <fileset dir="protected/tests/unit">
                     <include name="*Test.php"/>
                 </fileset>
             </batchtest>
@@ -45,7 +45,7 @@
     <target name="docs">
         <phpdoc title="Phing Example" destdir="docs" output="HTML:Smarty:PHP"
                 linksource="true" quiet="true">
-            <fileset dir="src">
+            <fileset dir="framework">
                 <include name="*.php"/>
             </fileset>
         </phpdoc>
