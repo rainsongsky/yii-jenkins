@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: drizheruk
@@ -6,7 +7,6 @@
  * Time: 7:52 PM
  * To change this template use File | Settings | File Templates.
  */
-
 class DemoTest extends CTestCase
 {
     public function testMailingToOnePerson()
@@ -14,9 +14,10 @@ class DemoTest extends CTestCase
         $count = 1;
         $this->assertEquals(1, $count);
     }
-    
-    public function testA(){
-	$this->assertTrue(true, true);
+
+    public function testA()
+    {
+        $this->assertTrue(true, false);
     }
 
 }
