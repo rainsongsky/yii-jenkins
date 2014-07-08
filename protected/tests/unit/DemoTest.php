@@ -12,4 +12,9 @@ class DemoTest extends CTestCase
     {
         $this->assertTrue(true, true);
     }
+
+    public function testB()
+    {
+        $this->assertEqual(25, 12);
+    }
 }
