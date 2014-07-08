@@ -1,7 +1,15 @@
 <project name="yii" default="build" basedir=".">
-
+    <property name="output" location="${basedir}/buildOutput/"/>
     <property name="source" value="protected"/>
-    <target name="build" depends="clean,phpunit"/>
+
+    <target name="init">
+        <mkdir dir="${output}"/>
+        <mkdir dir="${output}/phpcs/"/>
+        <mkdir dir="${output}/pdepend/"/>
+    </target>
+
+
+    <target name="build" depends="clean,init,phpunit,phpcs"/>
 
     <target name="clean">
         <!-- Clean up -->
@@ -14,6 +22,12 @@
     <target name="phpunit">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
             <arg line="unit" />
+        </exec>
+    </target>
+
+    <target name="phpcs">
+        <exec executable="phpcs">
+            <arg line="--report=checkstyle --report-file=${output}/phpcs/checkstyle.xml --standard=Zend ${basedir}/protected/models" />
         </exec>
     </target>
 </project>
