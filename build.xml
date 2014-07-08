@@ -1,4 +1,4 @@
-<project name="Jenkins Example" default="build" basedir="." description="This is an example buildfile for Jenkins.">
+<project name="Jenkins Example" default="build" basedir=".">
 
     <!--<target name="build" depends="test,prepare,reports,docs">-->
     <target name="build" depends="prepare,clean">
