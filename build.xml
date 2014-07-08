@@ -1,69 +1,19 @@
-<project name="Jenkins Example" default="phpunit" basedir=".">
+<project name="yii" default="build" basedir=".">
 
-    <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="phpunit" failonerror="true">
-            <arg line="--log-junit ${basedir}/build/logs/phpunit.xml protected/" />
-        </exec>
-    </target>
-
-
-    <!--<target name="build" depends="test,prepare,reports,docs">-->
-    <target name="build" depends="test,prepare,clean">
-        <!--<zip destfile="helloworld.zip" basedir="src"/>-->
-        <!--<tar destfile="helloworld.tar" basedir="src"/>-->
-    </target>
-
-    <target name="prepare">
-        <mkdir dir="reports/coverage"/>
-        <mkdir dir="reports/tests"/>
-        <mkdir dir="docs"/>
-    </target>
-    <target name="reports">
-        <coverage-setup database="reports/coverage.db">
-            <fileset dir="protected/tests/unit">
-                <include name="*.php"/>
-                <exclude name="*Test.php"/>
-            </fileset>
-        </coverage-setup>
-        <phpunit codecoverage="true">
-            <formatter type="xml" todir="reports"/>
-            <batchtest>
-                <fileset dir="protected/tests/unit">
-                    <include name="*Test.php"/>
-                </fileset>
-            </batchtest>
-        </phpunit>
-        <phpunitreport infile="reports/testsuites.xml" format="frames" todir="reports/tests" styledir="../../etc"/>
-        <coverage-report outfile="reports/coverage.xml">
-            <report todir="reports/coverage" styledir="../../etc"/>
-        </coverage-report>
-    </target>
-
-    <target name="test">
-        <phpunit haltonerror="true" haltonfailure="true">
-            <batchtest>
-                <fileset dir="protected/tests/unit">
-                    <include name="*Test.php"/>
-                </fileset>
-            </batchtest>
-        </phpunit>
-    </target>
-
-    <target name="docs">
-        <phpdoc title="Phing Example" destdir="docs" output="HTML:Smarty:PHP"
-                linksource="true" quiet="true">
-            <fileset dir="framework">
-                <include name="*.php"/>
-            </fileset>
-        </phpdoc>
-    </target>
-
-
+    <property name="source" value="protected"/>
+    <target name="build" depends="clean,phpunit"/>
 
     <target name="clean">
-        <delete dir="reports"/>
-        <delete dir="docs"/>
-        <delete file="helloworld.zip"/>
-        <delete file="helloworld.tar"/>
+        <!-- Clean up -->
+        <delete dir="build"/>
+        <!-- Create build directories -->
+        <mkdir dir="${basedir}/build/coverage"/>
+        <mkdir dir="${basedir}/build/logs"/>
+    </target>
+
+    <target name="phpunit">
+        <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
+            <arg line="unit" />
+        </exec>
     </target>
 </project>
