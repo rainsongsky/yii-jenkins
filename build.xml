@@ -21,7 +21,9 @@
 
     <target name="phpunit">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="unit" />
+            <arg line="--coverage-clover ${output}/CodeCoverage/clover.xml
+				--coverage-html ${output}/CodeCoverage/
+				."/>
         </exec>
     </target>
 
