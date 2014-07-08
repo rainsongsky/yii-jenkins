@@ -1,4 +1,11 @@
-<project name="Jenkins Example" default="build" basedir=".">
+<project name="Jenkins Example" default="phpunit" basedir=".">
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true">
+            <arg line="--log-junit ${basedir}/build/logs/phpunit.xml protected/" />
+        </exec>
+    </target>
+
 
     <!--<target name="build" depends="test,prepare,reports,docs">-->
     <target name="build" depends="test,prepare,clean">
