@@ -9,7 +9,7 @@
     </target>
 
 
-    <target name="build" depends="clean,init,phpunit,phpcs"/>
+    <target name="build" depends="clean,init,phpunit,phpcs,phpmd"/>
 
     <target name="clean">
         <!-- Clean up -->
