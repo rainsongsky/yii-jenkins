@@ -9,7 +9,7 @@
     </target>
 
 
-    <target name="build" depends="clean,init,phpunit,phpcs,phpmd"/>
+    <target name="build" depends="clean,init,phpunit,phpcs"/>
 
     <target name="clean">
         <!-- Clean up -->
@@ -24,15 +24,6 @@
             <arg line="unit" />
         </exec>
     </target>
-
-    <target name="phpmd">
-        <exec executable="phpmd">
-            <arg line="
-				 . xml codesize,unusedcode,naming,design --reportfile ${output}/messdetector.xml --exclude Tests/
-			" />
-        </exec>
-    </target>
-
 
     <target name="phpcs">
         <exec executable="phpcs">
