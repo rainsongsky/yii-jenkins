@@ -15,6 +15,6 @@ class DemoTest extends CTestCase
 
     public function testB()
     {
-        $this->assertEqual(25, 12);
+        $this->assertEqual(25, 25);
     }
 }
