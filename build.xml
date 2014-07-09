@@ -2,7 +2,8 @@
     <property name="output" location="${basedir}/build/"/>
 
     <target name="clean" description="Cleanup build artifacts">
-        <delete dir="build"></delete>
+        <delete dir="build/coverage" />
+        <delete dir="build/logs" />
     </target>
 
     <target name="init" depends="clean">
