@@ -1,7 +1,15 @@
 <project name="Test" default="build" basedir=".">
     <property name="output" location="${basedir}/buildOutput/"/>
 
-    <target name="init">
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="build/coverage"></delete>
+        <delete dir="build/logs"></delete>
+    </target>
+
+    <target name="init" depends="clean">
+        <mkdir dir="build/coverage" />
+        <mkdir dir="build/logs" />
+
         <mkdir dir="${output}"/>
         <mkdir dir="${output}/phpcs/"/>
         <mkdir dir="${output}/pdepend/"/>
@@ -12,8 +20,8 @@
 
     <target name="test">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="--coverage-clover ${output}/CodeCoverage/clover.xml
-				--coverage-html ${output}/CodeCoverage/
+            <arg line="--coverage-clover build/logs/clover.xml
+				--coverage-html build/coverage/
 				unit"/>
         </exec>
     </target>
@@ -23,7 +31,7 @@
             <arg line="--report=checkstyle
               			--report-file=${output}/phpcs/checkstyle.xml
               			--standard=Zend
-              			${basedir}/protected/models" />
+              			${basedir}/protected/models"/>
         </exec>
     </target>
 
@@ -31,7 +39,7 @@
         <exec executable="phpmd">
             <arg line="
 				 ${basedir}/protected/models xml codesize,unusedcode,naming,design --reportfile ${output}/messdetector.xml --exclude Tests/
-			" />
+			"/>
         </exec>
     </target>
 
@@ -39,7 +47,7 @@
         <exec executable="phpcpd">
             <arg line="
 				 --log-pmd ${output}/phpcpd.xml ${basedir}/protected/models
-			" />
+			"/>
         </exec>
     </target>
 
@@ -51,7 +59,7 @@
 				--overview-pyramid=${output}/pdepend/overview-pyramid.svg
 				--ignore=Tests/
 				${basedir}/protected/models
-			" />
+			"/>
         </exec>
     </target>
 </project>
