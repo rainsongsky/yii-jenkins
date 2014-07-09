@@ -18,8 +18,8 @@
 
     <target name="test">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="--coverage-clover ${output}/logs/clover.xml
-				--coverage-html ${output}/coverage/
+            <arg line="--coverage-clover build/logs/clover.xml
+				--coverage-html build/coverage/
 				unit"/>
         </exec>
     </target>
