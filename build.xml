@@ -6,11 +6,11 @@
     </target>
 
     <target name="init" depends="clean">
-        <mkdir dir="${output}"/>
-        <mkdir dir="build/coverage" />
-        <mkdir dir="build/logs" />
         <mkdir dir="${output}/phpcs/"/>
         <mkdir dir="${output}/pdepend/"/>
+
+        <mkdir dir="build/coverage" />
+        <mkdir dir="build/logs" />
     </target>
 
     <target name="build" depends="init, test, phpcs, phpmd, phpcpd, pdepend">
