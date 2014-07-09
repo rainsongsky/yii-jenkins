@@ -1,6 +1,5 @@
-<project name="yii" default="build" basedir=".">
+<project name="Test" default="build" basedir=".">
     <property name="output" location="${basedir}/buildOutput/"/>
-    <property name="source" value="protected"/>
 
     <target name="init">
         <mkdir dir="${output}"/>
@@ -8,26 +7,39 @@
         <mkdir dir="${output}/pdepend/"/>
     </target>
 
-
-    <target name="build" depends="clean,init,phpunit,phpcs"/>
-
-    <target name="clean">
-        <!-- Clean up -->
-        <delete dir="build"/>
-        <!-- Create build directories -->
-        <mkdir dir="${basedir}/build/coverage"/>
-        <mkdir dir="${basedir}/build/logs"/>
+    <target name="build" depends="init, test, phpcs, phpmd, phpcpd, pdepend">
     </target>
 
-    <target name="phpunit">
-        <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="unit" />
+    <target name="test">
+        <exec executable="phpunit" failonerror="true">
+            <arg line="--coverage-clover ${output}/CodeCoverage/clover.xml
+				--coverage-html ${output}/CodeCoverage/
+				."/>
         </exec>
     </target>
 
     <target name="phpcs">
         <exec executable="phpcs">
-            <arg line="--report=checkstyle --report-file=${output}/phpcs/checkstyle.xml --standard=Zend ${basedir}/protected/models" />
+            <arg line="--report=checkstyle
+              			--report-file=${output}/phpcs/checkstyle.xml
+              			--standard=Zend
+              			${basedir}" />
+        </exec>
+    </target>
+
+    <target name="phpmd">
+        <exec executable="phpmd">
+            <arg line="
+				 . xml codesize,unusedcode,naming,design --reportfile ${output}/messdetector.xml --exclude Tests/
+			" />
+        </exec>
+    </target>
+
+    <target name="phpcpd">
+        <exec executable="phpcpd">
+            <arg line="
+				 --log-pmd ${output}/phpcpd.xml .
+			" />
         </exec>
     </target>
 
@@ -42,5 +54,4 @@
 			" />
         </exec>
     </target>
-
 </project>
