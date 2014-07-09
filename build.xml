@@ -12,9 +12,9 @@
 
     <target name="test">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="unit --coverage-clover ${output}/CodeCoverage/clover.xml
+            <arg line="--coverage-clover ${output}/CodeCoverage/clover.xml
 				--coverage-html ${output}/CodeCoverage/
-				."/>
+				unit"/>
         </exec>
     </target>
 
@@ -23,14 +23,14 @@
             <arg line="--report=checkstyle
               			--report-file=${output}/phpcs/checkstyle.xml
               			--standard=Zend
-              			${basedir}" />
+              			${basedir}/protected/models" />
         </exec>
     </target>
 
     <target name="phpmd">
         <exec executable="phpmd">
             <arg line="
-				 . xml codesize,unusedcode,naming,design --reportfile ${output}/messdetector.xml --exclude Tests/
+				 ${basedir}/protected/models xml codesize,unusedcode,naming,design --reportfile ${output}/messdetector.xml --exclude Tests/
 			" />
         </exec>
     </target>
@@ -38,7 +38,7 @@
     <target name="phpcpd">
         <exec executable="phpcpd">
             <arg line="
-				 --log-pmd ${output}/phpcpd.xml .
+				 --log-pmd ${output}/phpcpd.xml ${basedir}/protected/models
 			" />
         </exec>
     </target>
@@ -50,7 +50,7 @@
 				--jdepend-chart=${output}/pdepend/dependencies.svg
 				--overview-pyramid=${output}/pdepend/overview-pyramid.svg
 				--ignore=Tests/
-				.
+				${basedir}/protected/models
 			" />
         </exec>
     </target>
