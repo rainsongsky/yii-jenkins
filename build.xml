@@ -1,16 +1,14 @@
 <project name="Test" default="build" basedir=".">
-    <property name="output" location="${basedir}/buildOutput/"/>
+    <property name="output" location="${basedir}/build/"/>
 
     <target name="clean" description="Cleanup build artifacts">
-        <delete dir="build/coverage"></delete>
-        <delete dir="build/logs"></delete>
+        <delete dir="build"></delete>
     </target>
 
     <target name="init" depends="clean">
+        <mkdir dir="${output}"/>
         <mkdir dir="build/coverage" />
         <mkdir dir="build/logs" />
-
-        <mkdir dir="${output}"/>
         <mkdir dir="${output}/phpcs/"/>
         <mkdir dir="${output}/pdepend/"/>
     </target>
@@ -20,8 +18,8 @@
 
     <target name="test">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="--coverage-clover build/logs/clover.xml
-				--coverage-html build/coverage/
+            <arg line="--coverage-clover ${output}/logs/clover.xml
+				--coverage-html ${output}/coverage/
 				unit"/>
         </exec>
     </target>
