@@ -19,8 +19,8 @@
 
     <target name="test">
         <exec dir="${basedir}/protected/tests" executable="phpunit" failonerror="true">
-            <arg line="--coverage-clover build/logs/clover.xml
-				--coverage-html build/coverage/
+            <arg line="--coverage-clover ${output}/build/logs/clover.xml
+				--coverage-html ${output}build/coverage/
 				unit"/>
         </exec>
     </target>
@@ -28,7 +28,7 @@
     <target name="phpcs">
         <exec executable="phpcs">
             <arg line="--report=checkstyle
-              			--report-file=build/logs/phpcs/checkstyle.xml
+              			--report-file=${output}/phpcs/checkstyle.xml
               			--standard=Zend
               			${basedir}/protected/models"/>
         </exec>
