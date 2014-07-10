@@ -41,7 +41,7 @@
     <target name="phpmd">
         <exec executable="phpmd">
             <arg line="
-				 ${basedir}/protected xml codesize,unusedcode,naming,design --reportfile build/logs/pmd.xml --exclude tests/ runtime/ views/ data/
+				 ${basedir}/protected xml codesize,unusedcode,naming,design --reportfile build/logs/pmd.xml --exclude tests/,runtime/,views/,data/
 			"/>
         </exec>
     </target>
