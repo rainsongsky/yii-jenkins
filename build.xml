@@ -28,7 +28,7 @@
     <target name="phpcs">
         <exec executable="phpcs">
             <arg line="--report=checkstyle
-              			--report-file=${output}/phpcs/checkstyle.xml
+              			--report-file=build/logs/phpcs/checkstyle.xml
               			--standard=Zend
               			${basedir}/protected/models"/>
         </exec>
