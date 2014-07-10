@@ -30,7 +30,11 @@
             <arg line="--report=checkstyle
               			--report-file=${output}/phpcs/checkstyle.xml
               			--standard=Zend
-              			${basedir}/protected/models"/>
+              			${basedir}/protected/models
+              			${basedir}/protected/components
+              			${basedir}/protected/config
+              			${basedir}/protected/controllers
+            "/>
         </exec>
     </target>
 
