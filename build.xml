@@ -41,7 +41,7 @@
     <target name="phpmd">
         <exec executable="phpmd">
             <arg line="
-				 ${basedir}/protected/models xml codesize,unusedcode,naming,design --reportfile build/logs/pmd.xml --exclude Tests/
+				 ${basedir}/protected xml codesize,unusedcode,naming,design --reportfile build/logs/pmd.xml --exclude tests/ runtime/ views/ data/
 			"/>
         </exec>
     </target>
@@ -49,7 +49,8 @@
     <target name="phpcpd">
         <exec executable="phpcpd">
             <arg line="
-				 --log-pmd ${output}/phpcpd.xml ${basedir}/protected/models
+				 --log-pmd ${output}/phpcpd.xml
+				 ${basedir}/protected/models
 			"/>
         </exec>
     </target>
