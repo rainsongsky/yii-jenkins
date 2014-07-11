@@ -29,7 +29,7 @@
         <exec executable="phpcs">
             <arg line="--report=checkstyle
               			--report-file=${output}/phpcs/checkstyle.xml
-              			--standard=Zend
+              			--standard=PSR2
               			${basedir}/protected/models
               			${basedir}/protected/components
               			${basedir}/protected/config
